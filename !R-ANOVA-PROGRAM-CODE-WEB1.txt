@@ -1,0 +1,23 @@
+# ANOVA comparing programs
+# A. Independent Reading
+# B. Choral Reading
+
+datafilename="https://dl.dropboxusercontent.com/u/23539897/R/COMPLETE-FILE.csv"
+fluency1=read.csv(datafilename,header=T)   #read the data into a table
+attach(fluency1)
+aov1 = aov(Fluency~Program,data=fluency1)#do the analysis 
+summary(aov1)            #show the summary table
+print(model.tables(aov1,"means"),digits=3) #report the M
+boxplot(Fluency~Program,data=fluency1) #graphical summary
+title("Independent reading, not choral reading, promotes greater fluency gains.")
+
+# Anova comparing programs and CELDT Level
+# A. = Independent Reading
+# B. = Choral Reading
+# The factor is CELDT Level
+
+aov2 = aov(Fluency~Program*CELDT,data=fluency1)#do the analysis 
+summary(aov2)            #show the summary table
+print(model.tables(aov2,"means"),digits=3) #report the M
+boxplot(Fluency~Program*CELDT,data=fluency1)
+title("Independent readers benefit more from independent reading, while dependent readers benefit more from choral reading.")

@@ -1,0 +1,50 @@
+#Pearson R Correction
+#Install Corrgram
+install.packages("corrgram")
+library("corrgram")
+
+Read the clipboard into 'data'
+pearson1 <- "https://dl.dropboxusercontent.com/u/23539897/R/COMPLETE-FILE.csv"
+
+#See if the data copied in
+pearson2 <- read.csv(pearson1,header=T)   #read the data into a table
+
+#Keep the data in memory
+attach(pearson2)
+
+#Let's plot the data!
+plot(GPA~VerbalScore)
+
+#Let's get the correlation!
+#r value
+GPA <- GPA
+Verbal <- VerbalScore
+cor(GPA,Verbal)
+
+#Let's get the strength
+r <- cor(GPA,Verbal)
+r*r
+
+#Look at the correlogram
+
+d <- cbind(GPA,Verbal)
+
+corrgram(d)
+
+#The best correlogram ever
+corrgram(d, lower.panel=panel.shade, upper.panel=panel.pie, main="Relationship of GPA to Verbal Scores")
+
+#Redraw the plot w/ labels
+plot(GPA,Verbal, xlab="GPA", ylab="Verbal Scores")
+
+#Add a regression (prediction) line
+fit <- lm(Verbal~GPA)
+
+#Show coefficient
+fit
+
+#Add regression line to plot
+abline(fit, col="red")
+
+#Add atitle.
+title("Relationship of GPA to Verbal Scores.")

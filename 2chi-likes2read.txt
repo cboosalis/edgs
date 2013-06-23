@@ -1,0 +1,37 @@
+####################################################
+#Chi Square
+#Is there a difference in gender and liking to read?
+#What is the likihood that these populations are different?
+
+#Install packages
+install.packages("gmodels")
+install.packages("gdata")
+
+
+#add to library
+library("gdata")
+library("gmodels")
+
+
+datafilename <- "https://dl.dropboxusercontent.com/u/23539897/R/COMPLETE-FILE.csv"
+chi <- read.csv(datafilename,header=T)   #read the data into a table
+
+attach(chi)
+
+likes <- table(Likes2Read, Sex)
+
+#Run the CHI SQUARE
+CrossTable(likes, fisher=TRUE, chisq = TRUE, expected=TRUE, sresid=TRUE, format ="SPSS")
+
+################################################
+#Assign higher ratios (ratings liking to read)
+girls <-c(75,106) #like/dontlike
+boys <-c(25,105) #like/dontlike
+
+#Create a table
+likes2 <- cbind(boys, girls)
+
+likes2 #Show the table
+
+#Run the CHI SQUARE
+CrossTable(likes2, fisher=TRUE, chisq = TRUE, expected=TRUE, sresid=TRUE, format ="SPSS")
