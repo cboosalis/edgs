@@ -2,7 +2,7 @@
 # A. Independent Reading
 # B. Choral Reading
 
-datafilename="https://dl.dropboxusercontent.com/u/23539897/R/COMPLETE-FILE.csv"
+datafilename="https:///u/23539897/R/COMPLETE-FILE.csv"
 fluency1=read.csv(datafilename,header=T)   #read the data into a table
 attach(fluency1)
 aov1 = aov(Fluency~Program,data=fluency1)#do the analysis 
